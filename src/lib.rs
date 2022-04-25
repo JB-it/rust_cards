@@ -80,3 +80,7 @@ pub fn deck_32() -> Vec<Card> {
     }
     deck
 }
+
+pub fn hello_world() {
+    println!("Hello from Rust Cards!!");
+}
