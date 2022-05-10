@@ -15,6 +15,7 @@ pub enum Rank {
     Queen,
     King,
     Ace,
+    None,
 }
 #[derive(Copy, Clone, Debug, IntoEnumIterator, PartialEq)]
 pub enum Suit {
@@ -22,6 +23,7 @@ pub enum Suit {
     Diamonds,
     Hearts,
     Spades,
+    None,
 }
 
 pub struct Card {
@@ -44,7 +46,6 @@ impl Card {
 
     pub fn get_value(&self) -> u8 {
         match self.rank {
-            Rank::Ace => 11,
             Rank::Two => 2,
             Rank::Three => 3,
             Rank::Four => 4,
@@ -57,6 +58,41 @@ impl Card {
             Rank::Jack => 10,
             Rank::Queen => 10,
             Rank::King => 10,
+            Rank::Ace => 11,
+            Rank::None => 0,
+        }
+    }
+}
+
+impl Rank {
+    pub fn get_rank_by_string(rank: &str) -> Rank {
+        match rank {
+            "2" => Rank::Two,
+            "3" => Rank::Three,
+            "4" => Rank::Four,
+            "5" => Rank::Five,
+            "6" => Rank::Six,
+            "7" => Rank::Seven,
+            "8" => Rank::Eight,
+            "9" => Rank::Nine,
+            "10" => Rank::Ten,
+            "J" => Rank::Jack,
+            "Q" => Rank::Queen,
+            "K" => Rank::King,
+            "A" => Rank::Ace,
+            _ => Rank::None,
+        }
+    }
+}
+
+impl Suit {
+    pub fn get_suit_by_string(suit: &str) -> Suit {
+        match suit {
+            "C" => Suit::Clubs,
+            "D" => Suit::Diamonds,
+            "H" => Suit::Hearts,
+            "S" => Suit::Spades,
+            _ => Suit::None,
         }
     }
 }
