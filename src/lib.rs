@@ -58,7 +58,7 @@ impl Card {
             Rank::Jack => 10,
             Rank::Queen => 10,
             Rank::King => 10,
-            Rank::Ace => 11,
+            Rank::Ace => 11, //To use as 1, %10 everything
             Rank::None => 0,
         }
     }
@@ -101,6 +101,12 @@ pub fn deck_52() -> Vec<Card> {
     let mut deck = Vec::new();
     for rank in Rank::into_enum_iter() {
         for suit in Suit::into_enum_iter() {
+            if rank == Rank::None {
+                continue;
+            }
+            if suit == Suit::None {
+                continue;
+            }
             deck.push(Card::new(rank, suit));
         }
     }
@@ -111,6 +117,12 @@ pub fn deck_32() -> Vec<Card> {
     let mut deck = Vec::new();
     for rank in Rank::into_enum_iter().skip(5) {
         for suit in Suit::into_enum_iter() {
+            if rank == Rank::None {
+                continue;
+            }
+            if suit == Suit::None {
+                continue;
+            }
             deck.push(Card::new(rank, suit));
         }
     }
