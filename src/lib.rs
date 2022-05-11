@@ -1,3 +1,5 @@
+use std::fmt;
+
 use enum_iterator::IntoEnumIterator;
 
 #[derive(Copy, Clone, Debug, IntoEnumIterator, PartialEq)]
@@ -47,6 +49,10 @@ impl Card {
     pub fn get_value(&self) -> u8 {
         Rank::get_value(&self.rank)
     }
+
+    pub fn get_full_card_name(&self) -> String {
+        format!("{} of {}", self.rank, self.suit)
+    }
 }
 
 impl Rank {
@@ -70,7 +76,7 @@ impl Rank {
     }
 
     pub fn get_value(&self) -> u8 {
-        match self.rank {
+        match self {
             Rank::Two => 2,
             Rank::Three => 3,
             Rank::Four => 4,
@@ -83,7 +89,7 @@ impl Rank {
             Rank::Jack => 10,
             Rank::Queen => 10,
             Rank::King => 10,
-            Rank::Ace => 11, //To use as 1, %10 everything
+            Rank::Ace => 11,
             Rank::None => 0,
         }
     }
@@ -131,6 +137,43 @@ pub fn deck_32() -> Vec<Card> {
         }
     }
     deck
+}
+
+impl fmt::Display for Rank {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let rank = match self {
+            Rank::Two => "2",
+            Rank::Three => "3",
+            Rank::Four => "4",
+            Rank::Five => "5",
+            Rank::Six => "6",
+            Rank::Seven => "7",
+            Rank::Eight => "8",
+            Rank::Nine => "9",
+            Rank::Ten => "10",
+            Rank::Jack => "Jack",
+            Rank::Queen => "Queen",
+            Rank::King => "King",
+            Rank::Ace => "Ace",
+            Rank::None => panic!("None shouldnt be printed"),
+        };
+        fmt::Display::fmt(rank, f)
+    }
+}
+
+impl fmt::Display for Suit {
+    #[inline]
+    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+        let suit = match self {
+            Suit::Clubs => "Clubs",
+            Suit::Diamonds => "Diamonds",
+            Suit::Hearts => "Hearts",
+            Suit::Spades => "Spades",
+            Suit::None => panic!("None shouldnt be printed"),
+        };
+        fmt::Display::fmt(suit, f)
+    }
 }
 
 pub fn hello_world() {
