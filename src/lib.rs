@@ -45,22 +45,7 @@ impl Card {
     }
 
     pub fn get_value(&self) -> u8 {
-        match self.rank {
-            Rank::Two => 2,
-            Rank::Three => 3,
-            Rank::Four => 4,
-            Rank::Five => 5,
-            Rank::Six => 6,
-            Rank::Seven => 7,
-            Rank::Eight => 8,
-            Rank::Nine => 9,
-            Rank::Ten => 10,
-            Rank::Jack => 10,
-            Rank::Queen => 10,
-            Rank::King => 10,
-            Rank::Ace => 11, //To use as 1, %10 everything
-            Rank::None => 0,
-        }
+        Rank::get_value(&self.rank)
     }
 }
 
@@ -81,6 +66,25 @@ impl Rank {
             "K" => Rank::King,
             "A" => Rank::Ace,
             _ => Rank::None,
+        }
+    }
+
+    pub fn get_value(&self) -> u8 {
+        match self.rank {
+            Rank::Two => 2,
+            Rank::Three => 3,
+            Rank::Four => 4,
+            Rank::Five => 5,
+            Rank::Six => 6,
+            Rank::Seven => 7,
+            Rank::Eight => 8,
+            Rank::Nine => 9,
+            Rank::Ten => 10,
+            Rank::Jack => 10,
+            Rank::Queen => 10,
+            Rank::King => 10,
+            Rank::Ace => 11, //To use as 1, %10 everything
+            Rank::None => 0,
         }
     }
 }
