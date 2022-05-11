@@ -6,6 +6,7 @@ pub use suit::*;
 
 use enum_iterator::IntoEnumIterator;
 
+#[derive(Debug, Eq, PartialEq)]
 pub struct Card {
     rank: Rank,
     suit: Suit,

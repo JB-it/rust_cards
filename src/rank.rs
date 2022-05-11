@@ -2,7 +2,7 @@ use std::fmt;
 
 use enum_iterator::IntoEnumIterator;
 
-#[derive(Copy, Clone, Debug, IntoEnumIterator, PartialEq)]
+#[derive(Copy, Clone, Debug, IntoEnumIterator, PartialEq, Eq)]
 pub enum Rank {
     Two,
     Three,

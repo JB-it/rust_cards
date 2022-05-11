@@ -26,4 +26,12 @@ mod tests {
         assert_eq!(rank2, rust_cards::Rank::Jack);          
         assert_eq!(rank3, rust_cards::Rank::Ace)        
     }
+
+    #[test]
+    fn test_card_equal() {
+        let card1 = rust_cards::Card::new(rust_cards::Rank::Two, rust_cards::Suit::Clubs);
+        let card2 = rust_cards::Card::new(rust_cards::Rank::Two, rust_cards::Suit::Clubs);
+
+        assert_eq!(card1, card2);
+    }
 }
