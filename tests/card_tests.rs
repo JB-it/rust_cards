@@ -47,6 +47,7 @@ mod tests {
         );
 
         deck.sort();
+        
         assert_eq!(deck[0], rust_cards::Card::new(rust_cards::Rank::Two, rust_cards::Suit::Clubs));
         assert_eq!(deck[1], rust_cards::Card::new(rust_cards::Rank::Five, rust_cards::Suit::Clubs));
         assert_eq!(deck[2], rust_cards::Card::new(rust_cards::Rank::Ten, rust_cards::Suit::Clubs));
