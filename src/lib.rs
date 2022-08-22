@@ -6,7 +6,7 @@ pub use suit::*;
 
 use enum_iterator::IntoEnumIterator;
 
-#[derive(Debug, Eq, PartialEq)]
+#[derive(Debug, Eq, PartialEq, Ord, PartialOrd)]
 pub struct Card {
     rank: Rank,
     suit: Suit,
@@ -38,12 +38,6 @@ pub fn deck_52() -> Vec<Card> {
     let mut deck = Vec::new();
     for rank in Rank::into_enum_iter() {
         for suit in Suit::into_enum_iter() {
-            if rank == Rank::None {
-                continue;
-            }
-            if suit == Suit::None {
-                continue;
-            }
             deck.push(Card::new(rank, suit));
         }
     }
@@ -54,12 +48,6 @@ pub fn deck_32() -> Vec<Card> {
     let mut deck = Vec::new();
     for rank in Rank::into_enum_iter().skip(5) {
         for suit in Suit::into_enum_iter() {
-            if rank == Rank::None {
-                continue;
-            }
-            if suit == Suit::None {
-                continue;
-            }
             deck.push(Card::new(rank, suit));
         }
     }

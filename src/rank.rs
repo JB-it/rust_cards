@@ -2,7 +2,7 @@ use std::fmt;
 
 use enum_iterator::IntoEnumIterator;
 
-#[derive(Copy, Clone, Debug, IntoEnumIterator, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, IntoEnumIterator, PartialEq, Eq, PartialOrd, Ord)]
 pub enum Rank {
     Two,
     Three,
@@ -17,26 +17,25 @@ pub enum Rank {
     Queen,
     King,
     Ace,
-    None,
 }
 
 impl Rank {
-    pub fn get_rank_by_string(rank: &str) -> Rank {
+    pub fn get_rank_by_string(rank: &str) -> Option<Rank> {
         match rank {
-            "2" => Rank::Two,
-            "3" => Rank::Three,
-            "4" => Rank::Four,
-            "5" => Rank::Five,
-            "6" => Rank::Six,
-            "7" => Rank::Seven,
-            "8" => Rank::Eight,
-            "9" => Rank::Nine,
-            "10" => Rank::Ten,
-            "J" => Rank::Jack,
-            "Q" => Rank::Queen,
-            "K" => Rank::King,
-            "A" => Rank::Ace,
-            _ => Rank::None,
+            "2" => Some(Rank::Two),
+            "3" => Some(Rank::Three),
+            "4" => Some(Rank::Four),
+            "5" => Some(Rank::Five),
+            "6" => Some(Rank::Six),
+            "7" => Some(Rank::Seven),
+            "8" => Some(Rank::Eight),
+            "9" => Some(Rank::Nine),
+            "10" => Some(Rank::Ten),
+            "J" => Some(Rank::Jack),
+            "Q" => Some(Rank::Queen),
+            "K" => Some(Rank::King),
+            "A" => Some(Rank::Ace),
+            _ => None,
         }
     }
 
@@ -55,7 +54,6 @@ impl Rank {
             Rank::Queen => 10,
             Rank::King => 10,
             Rank::Ace => 11,
-            Rank::None => 0,
         }
     }
 }
@@ -77,7 +75,6 @@ impl fmt::Display for Rank {
             Rank::Queen => "Queen",
             Rank::King => "King",
             Rank::Ace => "Ace",
-            Rank::None => panic!("None shouldnt be printed"),
         };
         fmt::Display::fmt(rank, f)
     }
